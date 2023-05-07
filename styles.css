@@ -1,0 +1,132 @@
+*, ::before, ::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(233, 233, 233);
+}
+
+:root{
+    --tile-size: 150px;
+}
+.header{
+    margin-bottom: 3vh;
+}
+.app{
+    display: grid;
+    place-content: center;
+    place-items: center;
+    height: 100vh;
+}
+
+.game-board{
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    aspect-ratio: 1/1;
+}   
+.tile{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: var(--tile-size);
+    max-width: 90vw;
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+
+.tile.x::before,
+.tile.x::after,
+.tile.o::before,
+.tile.o::after{
+    background-color: black;
+}
+
+.game-board.x .tile:not(.x):not(.o):hover::before,
+.game-board.x .tile:not(.x):not(.o):hover::after,
+.game-board.o .tile:not(.x):not(.o):hover::before,
+.game-board.o .tile:not(.x):not(.o):hover::after {
+    background-color: lightgray;
+}
+
+
+.game-board.x .tile:not(.x):not(.o):hover::before,
+.game-board.x .tile:not(.x):not(.o):hover::after,
+.tile.x::before,
+.tile.x::after {
+    content: "";
+    width: calc(var(--tile-size) * 0.1);
+    height: calc(var(--tile-size) * 0.6);
+    position: absolute;
+}
+.game-board.x .tile:not(.x):not(.o):hover::before,
+.tile.x::before{
+    transform: rotate(45deg);
+}
+
+.game-board.x .tile:not(.x):not(.o):hover::after,
+.tile.x::after{
+    transform: rotate(-45deg);
+}
+
+
+.game-board.o .tile:not(.x):not(.o):hover::before,
+.game-board.o .tile:not(.x):not(.o):hover::after,
+.tile.o::before,
+.tile.o::after{
+    content: "";
+    width: calc(var(--tile-size) * 0.5);
+    height: calc(var(--tile-size) * 0.5);
+    border-radius: 100%;
+    position: absolute;
+}
+
+.game-board.o .tile:not(.x):not(.o):hover::after,
+.tile.o::after{
+    width: calc(var(--tile-size) * 0.32);
+    height: calc(var(--tile-size) * 0.32);
+    background-color: white;
+}
+
+.winning-message-section.appear {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    background-color: rgba(35, 35, 35, 0.97);
+    color: white;
+}
+.winning-message-section{
+    display: none;
+}
+.winning-message{
+    background-color: transparent;
+    font-size: xxx-large;
+    margin-bottom: 1vh;
+}
+.restartBtn{
+    border: none;
+    padding: 0.5em 1em;
+    font-size: medium;
+    outline: 2px solid white;
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+.restartBtn:hover{
+    outline: 3px solid white;
+}
+.turn-section{
+    margin-top: 2vh;
+}
+.turn-label {
+    text-decoration: underline;
+    font-size: large;
+    text-underline-offset: 2px;
+}
